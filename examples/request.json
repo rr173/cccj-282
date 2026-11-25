@@ -1,0 +1,51 @@
+{
+  "subbatches": [
+    {
+      "subbatch_id": "A",
+      "sampling_frame": ["A1", "A2"],
+      "frame_complete": true,
+      "sampling_plan": {
+        "propagation_threshold": 1,
+        "rejection_threshold": 1,
+        "required_coverage": 2,
+        "max_ordinary_defects": 0
+      }
+    },
+    {
+      "subbatch_id": "B",
+      "sampling_frame": ["B1"],
+      "sampling_plan": {
+        "propagation_threshold": 1,
+        "rejection_threshold": 1,
+        "required_coverage": 1,
+        "max_ordinary_defects": 0
+      }
+    }
+  ],
+  "edges": [
+    {"from": "A", "to": "B"}
+  ],
+  "initial_items": [
+    {"id": "I1", "package_id": "A1", "result": "severe_defect"},
+    {"id": "I2", "package_id": "A2", "result": "normal"},
+    {"id": "I3", "package_id": "B1", "result": "normal"}
+  ],
+  "revisions": [
+    {
+      "note": "撤销唯一严重项 I1",
+      "withdraw": ["I1"]
+    },
+    {
+      "note": "整批无效：合法增补与不存在撤回混合",
+      "add": [
+        {"id": "I4", "package_id": "A2", "result": "ordinary_defect"}
+      ],
+      "withdraw": ["DOES_NOT_EXIST"]
+    }
+  ],
+  "queries": [
+    {"version": 1, "subbatch_id": "B", "label": "初版 B 因传播证据拒收"},
+    {"version": 2, "subbatch_id": "B", "label": "撤销后 B 放行"},
+    {"version": 1, "subbatch_id": "B", "label": "旧版复查仍拒收"}
+  ]
+}

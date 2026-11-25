@@ -1,0 +1,260 @@
+{
+  "current_version": 2,
+  "publish_results": [
+    {
+      "accepted": true,
+      "version": 1,
+      "published": true,
+      "kind": "initial",
+      "added_item_ids": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "withdrawn_item_ids": [],
+      "affected_subbatches": [
+        "A",
+        "B"
+      ],
+      "changes": [],
+      "errors": [],
+      "note": "初始判定版",
+      "decision_changed_subbatches": [],
+      "severe_basis_changed_subbatches": [],
+      "changed_subbatches": []
+    },
+    {
+      "accepted": true,
+      "version": 2,
+      "published": true,
+      "kind": "revision",
+      "added_item_ids": [],
+      "withdrawn_item_ids": [
+        "I1"
+      ],
+      "affected_subbatches": [
+        "A",
+        "B"
+      ],
+      "changes": [
+        {
+          "subbatch_id": "A",
+          "decision_before": "rejected",
+          "decision_after": "insufficient_evidence",
+          "decision_changed": true,
+          "severe_basis_before": [
+            "I1"
+          ],
+          "severe_basis_after": [],
+          "severe_basis_changed": true,
+          "severe_packages_before": [
+            "A1"
+          ],
+          "severe_packages_after": [],
+          "coverage_before": 2,
+          "coverage_after": 1,
+          "ordinary_defects_before": 0,
+          "ordinary_defects_after": 0
+        },
+        {
+          "subbatch_id": "B",
+          "decision_before": "rejected",
+          "decision_after": "released",
+          "decision_changed": true,
+          "severe_basis_before": [
+            "I1"
+          ],
+          "severe_basis_after": [],
+          "severe_basis_changed": true,
+          "severe_packages_before": [
+            "A1"
+          ],
+          "severe_packages_after": [],
+          "coverage_before": 1,
+          "coverage_after": 1,
+          "ordinary_defects_before": 0,
+          "ordinary_defects_after": 0
+        }
+      ],
+      "errors": [],
+      "note": "撤销唯一严重项 I1",
+      "decision_changed_subbatches": [
+        "A",
+        "B"
+      ],
+      "severe_basis_changed_subbatches": [
+        "A",
+        "B"
+      ],
+      "changed_subbatches": [
+        "A",
+        "B"
+      ],
+      "request_index": 0
+    },
+    {
+      "accepted": false,
+      "version": 2,
+      "published": false,
+      "kind": "revision",
+      "added_item_ids": [],
+      "withdrawn_item_ids": [],
+      "affected_subbatches": [],
+      "changes": [],
+      "errors": [
+        "撤回不存在的检测项: DOES_NOT_EXIST"
+      ],
+      "note": "整批无效：合法增补与不存在撤回混合",
+      "decision_changed_subbatches": [],
+      "severe_basis_changed_subbatches": [],
+      "changed_subbatches": [],
+      "request_index": 1
+    }
+  ],
+  "query_results": [
+    {
+      "request_index": 0,
+      "ok": true,
+      "result": {
+        "version": 1,
+        "subbatch_id": "B",
+        "decision": "rejected",
+        "decision_zh": "拒收",
+        "severe_evidence_count": 1,
+        "severe_packages": [
+          {
+            "package_id": "A1",
+            "origin_subbatch_id": "A",
+            "inspected_subbatch_id": "A",
+            "source_found": true,
+            "severe_items": [
+              {
+                "item_id": "I1",
+                "package_id": "A1",
+                "inspected_subbatch_id": "A",
+                "result": "severe_defect",
+                "result_zh": "严重缺陷",
+                "added_version": 1,
+                "withdrawn_version": null
+              }
+            ],
+            "direct_predecessors": [
+              "A"
+            ],
+            "propagation_edges": [
+              {
+                "from_subbatch_id": "A",
+                "to_subbatch_id": "B",
+                "from_severe_evidence_count": 1,
+                "propagation_threshold": 1,
+                "threshold_met": true
+              }
+            ],
+            "propagating_subbatches": [
+              "A"
+            ]
+          }
+        ],
+        "coverage": 1,
+        "required_coverage": 1,
+        "coverage_met": true,
+        "covered_packages": [
+          "B1"
+        ],
+        "frame_complete": true,
+        "ordinary_defects": 0,
+        "max_ordinary_defects": 0,
+        "ordinary_limit_met": true,
+        "ordinary_defect_packages": [],
+        "propagation_threshold": 1,
+        "rejection_threshold": 1
+      },
+      "label": "初版 B 因传播证据拒收"
+    },
+    {
+      "request_index": 1,
+      "ok": true,
+      "result": {
+        "version": 2,
+        "subbatch_id": "B",
+        "decision": "released",
+        "decision_zh": "放行",
+        "severe_evidence_count": 0,
+        "severe_packages": [],
+        "coverage": 1,
+        "required_coverage": 1,
+        "coverage_met": true,
+        "covered_packages": [
+          "B1"
+        ],
+        "frame_complete": true,
+        "ordinary_defects": 0,
+        "max_ordinary_defects": 0,
+        "ordinary_limit_met": true,
+        "ordinary_defect_packages": [],
+        "propagation_threshold": 1,
+        "rejection_threshold": 1
+      },
+      "label": "撤销后 B 放行"
+    },
+    {
+      "request_index": 2,
+      "ok": true,
+      "result": {
+        "version": 1,
+        "subbatch_id": "B",
+        "decision": "rejected",
+        "decision_zh": "拒收",
+        "severe_evidence_count": 1,
+        "severe_packages": [
+          {
+            "package_id": "A1",
+            "origin_subbatch_id": "A",
+            "inspected_subbatch_id": "A",
+            "source_found": true,
+            "severe_items": [
+              {
+                "item_id": "I1",
+                "package_id": "A1",
+                "inspected_subbatch_id": "A",
+                "result": "severe_defect",
+                "result_zh": "严重缺陷",
+                "added_version": 1,
+                "withdrawn_version": null
+              }
+            ],
+            "direct_predecessors": [
+              "A"
+            ],
+            "propagation_edges": [
+              {
+                "from_subbatch_id": "A",
+                "to_subbatch_id": "B",
+                "from_severe_evidence_count": 1,
+                "propagation_threshold": 1,
+                "threshold_met": true
+              }
+            ],
+            "propagating_subbatches": [
+              "A"
+            ]
+          }
+        ],
+        "coverage": 1,
+        "required_coverage": 1,
+        "coverage_met": true,
+        "covered_packages": [
+          "B1"
+        ],
+        "frame_complete": true,
+        "ordinary_defects": 0,
+        "max_ordinary_defects": 0,
+        "ordinary_limit_met": true,
+        "ordinary_defect_packages": [],
+        "propagation_threshold": 1,
+        "rejection_threshold": 1
+      },
+      "label": "旧版复查仍拒收"
+    }
+  ]
+}
